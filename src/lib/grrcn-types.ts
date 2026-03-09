@@ -1,0 +1,323 @@
+export interface GrrcnHeader {
+  recordType: 'HEADER';
+  fileCreationDate: string;
+  fileCreationTime: string;
+  sequentialNumber: string;
+  fileId: string;
+  fileName: string;
+  fileVersionNumber: string;
+}
+
+export interface GrrcnTrailer {
+  recordType: 'TRAILER';
+  sequentialNumber: string;
+  totalRecordCount: string;
+}
+
+export interface GrrcnSummary {
+  recordType: 'SUMMARY';
+  payeeMerchantId: string;
+  settlementAccountTypeCode: string;
+  americanExpressPaymentNumber: string;
+  paymentDate: string;
+  paymentCurrency: string;
+  uniquePaymentReferenceNumber: string;
+  paymentNetAmount: string;
+  paymentGrossAmount: string;
+  paymentDiscountAmount: string;
+  paymentServiceFeeAmount: string;
+  paymentAdjustmentAmount: string;
+  paymentTaxAmount: string;
+  openingDebitBalanceAmount: string;
+  payeeDirectDepositNumber: string;
+  bankAccountNumber: string;
+  internationalBankAccountNumber: string;
+  bankIdentifierCode: string;
+  paymentStatus: string;
+  // Parsed numeric values
+  _paymentNetAmount: number;
+  _paymentGrossAmount: number;
+  _paymentDiscountAmount: number;
+  _paymentServiceFeeAmount: number;
+  _paymentAdjustmentAmount: number;
+  _paymentTaxAmount: number;
+  _openingDebitBalanceAmount: number;
+  // Children
+  submissions: GrrcnSubmission[];
+  chargebacks: GrrcnChargeback[];
+  adjustments: GrrcnAdjustment[];
+  feeRevenues: GrrcnFeeRevenue[];
+}
+
+export interface GrrcnSubmission {
+  recordType: 'SUBMISSION';
+  payeeMerchantId: string;
+  settlementAccountTypeCode: string;
+  americanExpressPaymentNumber: string;
+  paymentDate: string;
+  paymentCurrency: string;
+  submissionMerchantId: string;
+  businessSubmissionDate: string;
+  americanExpressProcessingDate: string;
+  submissionInvoiceNumber: string;
+  submissionCurrency: string;
+  submissionBranchId: string;
+  submissionExchangeRate: string;
+  submissionGrossAmountInSubmissionCurrency: string;
+  submissionGrossAmountInPaymentCurrency: string;
+  submissionDiscountAmount: string;
+  submissionServiceFeeAmount: string;
+  submissionTaxAmount: string;
+  submissionNetAmount: string;
+  submissionDiscountRate: string;
+  submissionTaxRate: string;
+  transactionCount: string;
+  trackingId: string;
+  submissionDebitGrossAmount: string;
+  submissionCreditGrossAmount: string;
+  submitterId: string;
+  paymentStatus: string;
+  // Parsed
+  _submissionExchangeRate: number;
+  _submissionGrossAmountInSubmissionCurrency: number;
+  _submissionGrossAmountInPaymentCurrency: number;
+  _submissionDiscountAmount: number;
+  _submissionServiceFeeAmount: number;
+  _submissionTaxAmount: number;
+  _submissionNetAmount: number;
+  _submissionDiscountRate: number;
+  _submissionDebitGrossAmount: number;
+  _submissionCreditGrossAmount: number;
+  // Children
+  transactions: GrrcnTransaction[];
+}
+
+export interface GrrcnTransaction {
+  recordType: 'TRANSACTN';
+  payeeMerchantId: string;
+  settlementAccountTypeCode: string;
+  americanExpressPaymentNumber: string;
+  paymentDate: string;
+  paymentCurrency: string;
+  submissionMerchantId: string;
+  businessSubmissionDate: string;
+  americanExpressProcessingDate: string;
+  submissionInvoiceNumber: string;
+  submissionCurrency: string;
+  merchantLocationId: string;
+  invoiceReferenceNumber: string;
+  sellerId: string;
+  cardmemberAccountNumber: string;
+  industrySpecificReferenceNumber: string;
+  submissionGrossAmountInPaymentCurrency: string;
+  transactionAmount: string;
+  transactionDate: string;
+  transactionTime: string;
+  transactionId: string;
+  approvalCode: string;
+  terminalId: string;
+  merchantCategoryCode: string;
+  cardmemberReferenceNumber: string;
+  acquirerReferenceNumber: string;
+  dataQualityNonCompliantIndicator: string;
+  dataQualityErrorCode1: string;
+  dataQualityErrorCode2: string;
+  dataQualityErrorCode3: string;
+  dataQualityErrorCode4: string;
+  nonSwipedIndicator: string;
+  transactionRejectedIndicator: string;
+  installmentPaymentCount: string;
+  installmentPaymentIndicator: string;
+  installmentPlanNumber: string;
+  installmentPaymentGrossAmount: string;
+  vatInvoiceSequenceNumber: string;
+  serviceFeeAmount: string;
+  accelerationAmount: string;
+  marketSpecificRef1: string;
+  marketSpecificRef2: string;
+  submissionBranchId: string;
+  paymentStatus: string;
+  filler1: string;
+  paymentAccountReference: string;
+  // Parsed
+  _submissionGrossAmountInPaymentCurrency: number;
+  _transactionAmount: number;
+  _serviceFeeAmount: number;
+  _accelerationAmount: number;
+  // Children
+  txnPricings: GrrcnTxnPricing[];
+}
+
+export interface GrrcnTxnPricing {
+  recordType: 'TXNPRICING';
+  payeeMerchantId: string;
+  settlementAccountTypeCode: string;
+  americanExpressPaymentNumber: string;
+  paymentDate: string;
+  paymentCurrency: string;
+  submissionMerchantId: string;
+  merchantLocationId: string;
+  filler1: string;
+  invoiceReferenceNumber: string;
+  sellerId: string;
+  cardmemberAccountNumber: string;
+  transactionAmount: string;
+  transactionDate: string;
+  feeCode: string;
+  filler2: string;
+  feeAmount: string;
+  discountRate: string;
+  discountAmount: string;
+  roundedFeeAmountSettlementCurrency: string;
+  roundedDiscountAmountSettlementCurrency: string;
+  feeAmountSettlementCurrency: string;
+  discountAmountSettlementCurrency: string;
+  transactionAmountSettlementCurrency: string;
+  marketSpecificRef1: string;
+  marketSpecificRef2: string;
+  paymentStatus: string;
+  // Parsed
+  _transactionAmount: number;
+  _feeAmount: number;
+  _discountRate: number;
+  _discountAmount: number;
+  _roundedFeeAmountSettlementCurrency: number;
+  _roundedDiscountAmountSettlementCurrency: number;
+  _feeAmountSettlementCurrency: number;
+  _discountAmountSettlementCurrency: number;
+  _transactionAmountSettlementCurrency: number;
+}
+
+export interface GrrcnChargeback {
+  recordType: 'CHARGEBACK';
+  payeeMerchantId: string;
+  settlementAccountTypeCode: string;
+  americanExpressPaymentNumber: string;
+  paymentDate: string;
+  paymentCurrency: string;
+  submissionMerchantId: string;
+  businessSubmissionDate: string;
+  merchantLocationId: string;
+  invoiceReferenceNumber: string;
+  sellerId: string;
+  cardmemberAccountNumber: string;
+  industrySpecificReferenceNumber: string;
+  americanExpressProcessingDate: string;
+  submissionInvoiceNumber: string;
+  submissionCurrency: string;
+  chargebackNumber: string;
+  chargebackReasonCode: string;
+  chargebackReasonDescription: string;
+  grossAmount: string;
+  discountAmount: string;
+  serviceFeeAmount: string;
+  taxAmount: string;
+  netAmount: string;
+  discountRate: string;
+  serviceFeeRate: string;
+  batchCode: string;
+  billCode: string;
+  transactionId: string;
+  marketSpecificRef1: string;
+  marketSpecificRef2: string;
+  acquirerReferenceNumber: string;
+  originalTransactionAmountSubmissionCurrency: string;
+  originalTransactionAmountSettlementCurrency: string;
+  originalTransactionDate: string;
+  submissionInvoiceNumberOriginal: string;
+  grossAmountInSubmissionCurrency: string;
+  netAmountInSubmissionCurrency: string;
+  amexDisputeCaseReference: string;
+  chargebackReasonCodeIso: string;
+  paymentStatus: string;
+  // Parsed
+  _grossAmount: number;
+  _discountAmount: number;
+  _serviceFeeAmount: number;
+  _taxAmount: number;
+  _netAmount: number;
+  _discountRate: number;
+  _serviceFeeRate: number;
+}
+
+export interface GrrcnAdjustment {
+  recordType: 'ADJUSTMENT';
+  payeeMerchantId: string;
+  settlementAccountTypeCode: string;
+  americanExpressPaymentNumber: string;
+  paymentDate: string;
+  paymentCurrency: string;
+  submissionMerchantId: string;
+  businessSubmissionDate: string;
+  merchantLocationId: string;
+  invoiceReferenceNumber: string;
+  sellerId: string;
+  cardmemberAccountNumber: string;
+  industrySpecificReferenceNumber: string;
+  americanExpressProcessingDate: string;
+  submissionInvoiceNumber: string;
+  submissionCurrency: string;
+  adjustmentNumber: string;
+  adjustmentReasonCode: string;
+  adjustmentReasonDescription: string;
+  grossAmount: string;
+  discountAmount: string;
+  serviceFeeAmount: string;
+  taxAmount: string;
+  netAmount: string;
+  discountRate: string;
+  serviceFeeRate: string;
+  batchCode: string;
+  billCode: string;
+  paymentStatus: string;
+  // Parsed
+  _grossAmount: number;
+  _discountAmount: number;
+  _serviceFeeAmount: number;
+  _taxAmount: number;
+  _netAmount: number;
+  _discountRate: number;
+  _serviceFeeRate: number;
+}
+
+export interface GrrcnFeeRevenue {
+  recordType: 'FEEREVENUE';
+  payeeMerchantId: string;
+  americanExpressPaymentNumber: string;
+  paymentDate: string;
+  paymentCurrency: string;
+  submissionMerchantId: string;
+  merchantLocationId: string;
+  feeOrRevenueAmount: string;
+  feeOrRevenueDescription: string;
+  assetBillingAmount: string;
+  assetBillingDescription: string;
+  assetBillingTax: string;
+  payInGrossIndicator: string;
+  batchCode: string;
+  billCode: string;
+  sellerId: string;
+  // Parsed
+  _feeOrRevenueAmount: number;
+  _assetBillingAmount: number;
+  _assetBillingTax: number;
+}
+
+export interface GrrcnFile {
+  header: GrrcnHeader;
+  summaries: GrrcnSummary[];
+  trailer: GrrcnTrailer;
+  rawLines: string[];
+  recordCounts: {
+    header: number;
+    summary: number;
+    submission: number;
+    transaction: number;
+    txnPricing: number;
+    chargeback: number;
+    adjustment: number;
+    feeRevenue: number;
+    trailer: number;
+    total: number;
+  };
+}
