@@ -5,6 +5,7 @@ import AmountDisplay from './AmountDisplay.tsx';
 import SubmissionSection from './SubmissionSection.tsx';
 import ChargebackSection from './ChargebackSection.tsx';
 import AdjustmentSection from './AdjustmentSection.tsx';
+import RecordDetail from './RecordDetail.tsx';
 
 interface SummarySectionProps {
   summaries: GrrcnSummary[];
@@ -171,6 +172,8 @@ export default function SummarySection({ summaries }: SummarySectionProps) {
                   </div>
                 </div>
 
+                <RecordDetail record={summary as unknown as Record<string, unknown>} label="Summary Record Object" />
+
                 <SubmissionSection submissions={summary.submissions} currency={currency} />
                 <ChargebackSection chargebacks={summary.chargebacks} currency={currency} />
                 <AdjustmentSection adjustments={summary.adjustments} currency={currency} />
@@ -192,7 +195,7 @@ export default function SummarySection({ summaries }: SummarySectionProps) {
                       </thead>
                       <tbody>
                         {summary.feeRevenues.map((fr, i) => (
-                          <tr key={i}>
+                          <tr key={i} title="Click row to see record detail">
                             <td><code>{fr.submissionMerchantId}</code></td>
                             <td>{fr.merchantLocationId}</td>
                             <td>{fr.feeOrRevenueDescription}</td>
@@ -210,6 +213,9 @@ export default function SummarySection({ summaries }: SummarySectionProps) {
                         ))}
                       </tbody>
                     </table>
+                    {summary.feeRevenues.map((fr, fi) => (
+                      <RecordDetail key={fi} record={fr as unknown as Record<string, unknown>} label={`FeeRevenue #${fi + 1} Record Object`} />
+                    ))}
                   </div>
                 )}
               </div>

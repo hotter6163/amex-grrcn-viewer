@@ -3,6 +3,7 @@ import type { GrrcnTransaction } from '../lib/grrcn-types.ts';
 import { formatDate, formatTime } from '../lib/grrcn-parser.ts';
 import AmountDisplay from './AmountDisplay.tsx';
 import TxnPricingDetail from './TxnPricingDetail.tsx';
+import RecordDetail from './RecordDetail.tsx';
 
 interface TransactionTableProps {
   transactions: GrrcnTransaction[];
@@ -140,6 +141,7 @@ export default function TransactionTable({ transactions, currency }: Transaction
               Pricing for Transaction {txn.transactionId}
             </div>
             <TxnPricingDetail pricings={txn.txnPricings} currency={currency} />
+            <RecordDetail record={txn as unknown as Record<string, unknown>} label="Transaction Record Object" />
           </div>
         );
       })}

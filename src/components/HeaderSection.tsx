@@ -1,5 +1,6 @@
 import type { GrrcnHeader, GrrcnTrailer, GrrcnFile } from '../lib/grrcn-types.ts';
 import { formatDate, formatTime } from '../lib/grrcn-parser.ts';
+import RecordDetail from './RecordDetail.tsx';
 
 interface HeaderSectionProps {
   header: GrrcnHeader;
@@ -93,6 +94,8 @@ export default function HeaderSection({ header, trailer, recordCounts }: HeaderS
             </div>
           </div>
         </div>
+        <RecordDetail record={header as unknown as Record<string, unknown>} label="Header Record Object" />
+        <RecordDetail record={trailer as unknown as Record<string, unknown>} label="Trailer Record Object" />
       </div>
     </div>
   );

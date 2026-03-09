@@ -3,6 +3,7 @@ import type { GrrcnSubmission } from '../lib/grrcn-types.ts';
 import { formatDate } from '../lib/grrcn-parser.ts';
 import AmountDisplay from './AmountDisplay.tsx';
 import TransactionTable from './TransactionTable.tsx';
+import RecordDetail from './RecordDetail.tsx';
 
 interface SubmissionSectionProps {
   submissions: GrrcnSubmission[];
@@ -166,6 +167,8 @@ export default function SubmissionSection({ submissions, currency }: SubmissionS
                     </div>
                   ) : null}
                 </div>
+
+                <RecordDetail record={sub as unknown as Record<string, unknown>} label="Submission Record Object" />
 
                 {sub.transactions.length > 0 && (
                   <div className="transactions-wrapper">

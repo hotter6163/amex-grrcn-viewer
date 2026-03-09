@@ -1,6 +1,7 @@
 import type { GrrcnTxnPricing } from '../lib/grrcn-types.ts';
 import { getFeeCodeDescription } from '../lib/grrcn-parser.ts';
 import AmountDisplay from './AmountDisplay.tsx';
+import RecordDetail from './RecordDetail.tsx';
 
 interface TxnPricingDetailProps {
   pricings: GrrcnTxnPricing[];
@@ -55,6 +56,9 @@ export default function TxnPricingDetail({ pricings, currency }: TxnPricingDetai
           ))}
         </tbody>
       </table>
+      {pricings.map((p, i) => (
+        <RecordDetail key={i} record={p as unknown as Record<string, unknown>} label={`TxnPricing #${i + 1} Record Object`} />
+      ))}
     </div>
   );
 }

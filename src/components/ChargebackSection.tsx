@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { GrrcnChargeback } from '../lib/grrcn-types.ts';
 import { formatDate } from '../lib/grrcn-parser.ts';
 import AmountDisplay from './AmountDisplay.tsx';
+import RecordDetail from './RecordDetail.tsx';
 
 interface ChargebackSectionProps {
   chargebacks: GrrcnChargeback[];
@@ -66,6 +67,9 @@ export default function ChargebackSection({ chargebacks, currency }: ChargebackS
               ))}
             </tbody>
           </table>
+          {chargebacks.map((cb, i) => (
+            <RecordDetail key={i} record={cb as unknown as Record<string, unknown>} label={`Chargeback #${i + 1} Record Object`} />
+          ))}
         </div>
       )}
     </div>

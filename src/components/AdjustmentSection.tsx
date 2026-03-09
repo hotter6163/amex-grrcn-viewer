@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { GrrcnAdjustment } from '../lib/grrcn-types.ts';
 import { formatDate } from '../lib/grrcn-parser.ts';
 import AmountDisplay from './AmountDisplay.tsx';
+import RecordDetail from './RecordDetail.tsx';
 
 interface AdjustmentSectionProps {
   adjustments: GrrcnAdjustment[];
@@ -64,6 +65,9 @@ export default function AdjustmentSection({ adjustments, currency }: AdjustmentS
               ))}
             </tbody>
           </table>
+          {adjustments.map((adj, i) => (
+            <RecordDetail key={i} record={adj as unknown as Record<string, unknown>} label={`Adjustment #${i + 1} Record Object`} />
+          ))}
         </div>
       )}
     </div>

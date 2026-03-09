@@ -763,6 +763,133 @@ code,
   color: var(--color-text-muted);
 }
 
+/* ===== Record Detail ===== */
+.record-detail-wrapper {
+  margin: 0.75rem 0;
+}
+
+.record-detail-toggle {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.record-detail-toggle:hover {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.record-detail {
+  margin-top: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.record-detail-toolbar {
+  display: flex;
+  gap: 0;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.record-detail-mode-btn {
+  padding: 0.35rem 1rem;
+  border: none;
+  background: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+}
+
+.record-detail-mode-btn:hover {
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.record-detail-mode-btn.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.record-detail-table-wrapper {
+  overflow-x: auto;
+}
+
+.record-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.record-detail-table th {
+  background: var(--color-bg);
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.record-detail-table td {
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  vertical-align: top;
+}
+
+.record-detail-table tbody tr:hover {
+  background: var(--color-primary-light);
+}
+
+.record-detail-idx {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  width: 2rem;
+  text-align: right;
+}
+
+.record-detail-key {
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--color-primary-dark);
+}
+
+.record-detail-val code {
+  font-size: 0.8em;
+  word-break: break-all;
+}
+
+.record-detail-parsed .parsed-value {
+  color: var(--color-positive);
+  font-size: 0.8em;
+}
+
+.record-detail-json {
+  margin: 0;
+  padding: 0.75rem;
+  background: #1a2332;
+  color: #e2e8f0;
+  font-size: 0.8rem;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
   .viewer-page {
